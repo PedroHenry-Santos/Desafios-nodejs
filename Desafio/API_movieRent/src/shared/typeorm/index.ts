@@ -1,3 +1,4 @@
+import { Client } from "../../modules/clients/typeorm/entities/Client";
 import { DataSource } from "typeorm";
 
 const AppDataSource = new DataSource({
@@ -6,10 +7,10 @@ const AppDataSource = new DataSource({
   port: 5432,
   username: "postgres",
   password: "docker",
-  database: "api",
+  database: "apimovie",
   synchronize: true,
   logging: true,
-  entities: [],
+  entities: [Client],
   subscribers: [],
   migrations: [],
 })
