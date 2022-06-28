@@ -1,3 +1,4 @@
+
 import { IRent } from "@modules/rent/domain/service-models/IRent";
 import { Column,CreateDateColumn,Entity,PrimaryGeneratedColumn,UpdateDateColumn } from "typeorm";
 
@@ -27,5 +28,3 @@ export class Rent implements IRent {
 
   @UpdateDateColumn()
   updateAt?: Date;
-  
-}
