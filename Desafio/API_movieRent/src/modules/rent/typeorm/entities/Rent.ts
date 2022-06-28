@@ -2,10 +2,13 @@ import { IRent } from "@modules/rent/domain/service-models/IRent";
 import { Column,CreateDateColumn,Entity,PrimaryGeneratedColumn,UpdateDateColumn } from "typeorm";
 
 
-@Entity
+@Entity()
 export class Rent implements IRent {
   @PrimaryGeneratedColumn()
-  movie_id:string;
+  rent_id:string;
+
+  @Column()
+  client_id: string;
 
   @Column()
   rent_date:Date;
@@ -16,6 +19,9 @@ export class Rent implements IRent {
   @Column()
   Is_available:boolean;
 
+  @Column()
+  movies: string;
+  
   @CreateDateColumn()
   createdAt?: Date;
 

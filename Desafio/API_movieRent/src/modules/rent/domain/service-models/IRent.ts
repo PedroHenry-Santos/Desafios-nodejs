@@ -1,7 +1,9 @@
 export interface IRent {
-  movie_id:string;
+  rent_id:string;
+  client_id:string;
   rent_date:Date;
   return_date:Date;
+  movies: string;
   Is_available:boolean;
   createdAt?: Date;
   updateAt?: Date;
