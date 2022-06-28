@@ -9,7 +9,5 @@ export default class ListClientService{
     const client = await this.repository.findAll(data);
 
     return client;
-
-    
   }
 }
