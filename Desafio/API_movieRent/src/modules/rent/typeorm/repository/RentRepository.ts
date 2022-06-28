@@ -1,4 +1,4 @@
-import { IRentRepository } from "@modules/rent/domain/repositorie-models/IRentRepositories";
+import { IRentRepository } from "@modules/rent/domain/repositorie-models/IRentRepository"
 import { IRent } from "@modules/rent/domain/service-models/IRent";
 import { IShowRent } from "@modules/rent/domain/service-models/IShowRent";
 import AppDataSource from "@shared/typeorm";
