@@ -1,23 +1,30 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
-import { IRent } from '@modules/rent/domain/service/IRent';
 
-@Entity('rents')
+import { IRent } from "@modules/rent/domain/service-models/IRent";
+import { Column,CreateDateColumn,Entity,PrimaryGeneratedColumn,UpdateDateColumn } from "typeorm";
+
+
+@Entity()
 export class Rent implements IRent {
-  @PrimaryGeneratedColumn('increment')
-  id: number;
+  @PrimaryGeneratedColumn()
+  rent_id:string;
 
   @Column()
-  id_client: number;
+  client_id: string;
 
   @Column()
-  id_movies: number;
+  rent_date:Date;
 
   @Column()
-  lending_date: Date;
+  return_date:Date;
 
   @Column()
-  return_date: Date;
+  Is_available:boolean;
 
   @Column()
-  is_rented: boolean;
-}
+  movies: string;
+  
+  @CreateDateColumn()
+  createdAt?: Date;
+
+  @UpdateDateColumn()
+  updateAt?: Date;
