@@ -10,6 +10,4 @@ export default class CreatClientService{
     return client;
 
   }
-
-
 }
