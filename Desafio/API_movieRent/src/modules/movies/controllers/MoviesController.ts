@@ -1,4 +1,5 @@
 import {Request,Response} from 'express'
+import { RentRepository } from '../../rent/typeorm/repository/RentRepository';
 import CreatMovieService from '../services/CreateMovieService';
 import DeleteMovieService from '../services/DeleteMovieService';
 import ListMovieService from '../services/ListMovieService'
@@ -21,13 +22,15 @@ export default class MoviesController {
   }
 
   public async create(request:Request, response:Response){
-    const { name,id,release_date,value,duration,category} = request.body;
+    const { name,id,release_date,duration,category,rent_id} = request.body;
 
-    const movieRepository = new MovieRepository()
+    const movieRepository = new MovieRepository();
 
-    const creatMovieService = new CreatMovieService(movieRepository)
+    const rentRepository = new RentRepository();
+
+    const creatMovieService = new CreatMovieService(movieRepository,rentRepository);
     
-    const movie = await creatMovieService.execute({ name,id,release_date,value,duration,category})
+    const movie = await creatMovieService.execute({ name,id,release_date,duration,category,rent_id});
 
 
     return response.status(200).json(movie)
@@ -46,10 +49,10 @@ export default class MoviesController {
 
   public async update(request:Request, response:Response){
     const {id} = request.params
-    const { name,release_date,value,duration,category} = request.body;
+    const { name,release_date,duration,category,rent_id} = request.body;
     const movieRepository = new MovieRepository()
     const updateMovieService = new UpdateMovieService(movieRepository);
-    const movie = await updateMovieService.execute(id,{ name,id,release_date,value,duration,category})
+    const movie = await updateMovieService.execute(id,{ name,id,release_date,duration,category,rent_id})
 
     return response.status(200).json(movie)
   }

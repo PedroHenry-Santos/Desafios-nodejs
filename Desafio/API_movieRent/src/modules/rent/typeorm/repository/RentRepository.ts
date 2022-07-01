@@ -1,11 +1,11 @@
-import { IRentRepository } from "@modules/rent/domain/repositorie-models/IRentRepository"
-import { IRent } from "@modules/rent/domain/service-models/IRent";
-import { IShowRent } from "@modules/rent/domain/service-models/IShowRent";
-import AppDataSource from "@shared/typeorm";
+import { IRentRepository } from "../../../../modules/rent/domain/repositorie-models/IRentRepository"
+import { IRent } from "../../../../modules/rent/domain/service-models/IRent";
+import { IShowRent } from "../../../../modules/rent/domain/service-models/IShowRent";
+import AppDataSource from "../../../../shared/typeorm";
 import { Repository } from "typeorm";
 import { Rent } from "../entities/Rent";
 
-export class RentRepositorie implements IRentRepository {
+export class RentRepository implements IRentRepository {
 
   private ormRepository: Repository<Rent>
 
@@ -13,13 +13,14 @@ export class RentRepositorie implements IRentRepository {
     this.ormRepository = AppDataSource.getRepository(Rent)
   }
 
-  findAll(category?: string): Promise<IRent[]> {
-    return this.ormRepository.find({where:{category}});
+  findAll(): Promise<IRent[]> {
+    return this.ormRepository.find({relations:['client','movie']
+  });
   }
 
-  findById(id: string): Promise<IRent | null> {
+  findById(rent_id: string): Promise<IRent | null> {
     return this.ormRepository.findOne({
-      where: {id}
+      where: {rent_id}
     });
   }
 

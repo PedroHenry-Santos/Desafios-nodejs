@@ -3,7 +3,7 @@ import {  Repository } from "typeorm";
 import AppDataSource from "../../../../shared/typeorm";
 import { Client } from "../entities/Client";
 import { IClient } from "../../domain/service-models/IClient";
-import { IShowClient } from "@modules/clients/domain/service-models/IShowClient";
+import { IShowClient } from "../../../../modules/clients/domain/service-models/IShowClient";
 
 
 export class ClientRepository implements IClientRepository {
@@ -13,8 +13,10 @@ export class ClientRepository implements IClientRepository {
     this.ormRepository = AppDataSource.getRepository(Client)
   }
 
-  findAll(cpf?: string): Promise<IClient[]> {
-    return this.ormRepository.find({where:{cpf}});
+  findAll(): Promise<IClient[]> {
+    return this.ormRepository.find({
+      relations: ['rent']
+    });
   }
 
   findById(id: string): Promise<IClient | null> {

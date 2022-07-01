@@ -1,4 +1,5 @@
-import { Column,CreateDateColumn,Entity,PrimaryGeneratedColumn,UpdateDateColumn } from "typeorm";
+import { Rent } from "../../../../modules/rent/typeorm/entities/Rent";
+import { Column,CreateDateColumn,Entity,JoinColumn,ManyToOne,PrimaryGeneratedColumn,UpdateDateColumn } from "typeorm";
 import { IMovie } from "../../domain/service-models/IMovie";
 
 @Entity()
@@ -10,13 +11,14 @@ export class Movie implements IMovie {
   name!: string;
 
   @Column()  
-  release_date?:Date;
+  release_date?:string;
   
   @Column()  
   category!: string;
 
+
   @Column()
-  value!: number;
+  rent_id!: string;
 
   @Column()
   duration!: string;
@@ -26,6 +28,10 @@ export class Movie implements IMovie {
 
   @UpdateDateColumn()
   updateAt?: Date;
+
+  @ManyToOne(()=>Rent, (rent)=>rent.movie)
+  @JoinColumn({name:'rent_id'})
+  rent!: Rent;
 }
 
  

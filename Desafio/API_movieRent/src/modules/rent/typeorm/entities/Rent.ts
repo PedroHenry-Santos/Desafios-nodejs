@@ -1,30 +1,35 @@
 
-import { IRent } from "@modules/rent/domain/service-models/IRent";
-import { Column,CreateDateColumn,Entity,PrimaryGeneratedColumn,UpdateDateColumn } from "typeorm";
+import { Client } from "../../../../modules/clients/typeorm/entities/Client";
+import { Movie } from "../../../../modules/movies/typeorm/entities/Movie";
+import { IRent } from "../../../../modules/rent/domain/service-models/IRent";
+import { Column,CreateDateColumn,Entity,JoinColumn,ManyToOne,OneToMany,PrimaryGeneratedColumn,UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Rent implements IRent {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   rent_id:string;
 
   @Column()
   client_id: string;
 
   @Column()
-  rent_date:Date;
+  rent_date:string;
 
   @Column()
-  return_date:Date;
+  return_date:string;
 
-  @Column()
-  Is_available:boolean;
 
-  @Column()
-  movies: string;
   
   @CreateDateColumn()
   createdAt?: Date;
 
   @UpdateDateColumn()
   updateAt?: Date;
+
+  @ManyToOne(()=>Client, (client) => client.rent)
+  @JoinColumn({name:"client_id"})
+  client?: Client;
+
+  @OneToMany(()=>Movie, (movie)=>movie.rent)
+  movie?:Movie[];
 }

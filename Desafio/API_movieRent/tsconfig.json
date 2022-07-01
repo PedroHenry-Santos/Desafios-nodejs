@@ -20,14 +20,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
-    "paths": {
-      "@config/*": ["./src/config/*"],
-      "@modules/*": ["./src/modules/*"],
-      "@shared/*": ["./src/shared/*"],
-      "@docs/*": ["./src/docs/*"]
-    }
+    "forceConsistentCasingInFileNames": true
+    
   },
   "exclude": [
     "node_modules",
