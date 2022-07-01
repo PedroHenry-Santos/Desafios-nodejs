@@ -8,13 +8,12 @@ import { ClientRepository } from '../typeorm/repository/ClientRepository'
 
 export default class clientsController {
   public async list(request:Request, response:Response){
-    const {cpf} = request.query;
-
+    
     const clientRepository = new ClientRepository()
 
     const listClientService = new ListClientService(clientRepository);
 
-    const clients = await listClientService.execute(cpf as string);
+    const clients = await listClientService.execute();
 
     return response.status(200).json(clients)
       
