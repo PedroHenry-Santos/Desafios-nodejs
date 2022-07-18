@@ -4,5 +4,4 @@ export interface IShowClient {
     cpf: string;
     tel: string;
     adress: string;
-    
 }

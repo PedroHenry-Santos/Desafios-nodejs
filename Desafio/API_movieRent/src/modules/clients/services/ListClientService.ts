@@ -1,7 +1,6 @@
 import { IClientRepository } from "../domain/repositories-models/IClientRepository";
 import { IClient } from "../domain/service-models/IClient";
 
-
 export default class ListClientService{
   constructor(private repository:IClientRepository){}
 

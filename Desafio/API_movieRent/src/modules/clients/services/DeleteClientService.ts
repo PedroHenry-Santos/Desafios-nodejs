@@ -1,6 +1,5 @@
 import { IClientRepository } from "../domain/repositories-models/IClientRepository";
 
-
 export default class DeleteClientService{
   constructor(private repository:IClientRepository){}
 
